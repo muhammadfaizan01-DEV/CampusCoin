@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { X, Lock, Mail, User, Sparkles, KeyRound, ShieldAlert } from 'lucide-react';
+import { X, Lock, Mail, User, Sparkles, ShieldAlert } from 'lucide-react';
 
 export const AuthModal = () => {
   const { isAuthModalOpen, setIsAuthModalOpen, login, register } = useApp();
@@ -15,17 +15,17 @@ export const AuthModal = () => {
 
   if (!isAuthModalOpen) return null;
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    const res = login(email, password);
+    const res = await login(email, password);
     if (!res.success) setError(res.error);
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    const res = register(name, email, password, role);
+    const res = await register(name, email, password, role);
     if (!res.success) setError(res.error);
   };
 
@@ -37,14 +37,6 @@ export const AuthModal = () => {
     }
     setError('');
     setResetSuccess(true);
-  };
-
-  const demoLoginStudent = () => {
-    login('alex@campus.edu', 'password123');
-  };
-
-  const demoLoginAdmin = () => {
-    login('admin@campuscoin.com', 'admin123');
   };
 
   return (
@@ -63,10 +55,10 @@ export const AuthModal = () => {
           <h2>{tab === 'login' ? 'Welcome Back' : tab === 'register' ? 'Create Student Account' : 'Reset Password'}</h2>
           <p className="auth-desc">
             {tab === 'login' 
-              ? 'Access your personalized budget, AI insights & savings engine.' 
+              ? 'Access your personalized budget, smart insights & savings engine.' 
               : tab === 'register' 
               ? 'Join CampusCoin to take control of your student finances.'
-              : 'Enter your registered email to receive a password reset token link.'}
+              : 'Enter your registered email to receive a password reset link.'}
           </p>
         </div>
 
@@ -81,21 +73,6 @@ export const AuthModal = () => {
         {resetSuccess && (
           <div className="auth-alert success">
             ✅ Reset token link sent! Check your email inbox.
-          </div>
-        )}
-
-        {/* Quick Demo Login Preset Buttons */}
-        {tab === 'login' && (
-          <div className="demo-box">
-            <span className="demo-title">⚡ Quick One-Click Demo Access:</span>
-            <div className="demo-buttons">
-              <button type="button" className="btn btn-primary btn-sm" onClick={demoLoginStudent}>
-                Demo Student (Alex)
-              </button>
-              <button type="button" className="btn btn-purple btn-sm" onClick={demoLoginAdmin}>
-                Demo Admin Access
-              </button>
-            </div>
           </div>
         )}
 
@@ -190,7 +167,7 @@ export const AuthModal = () => {
 
             <div className="form-group">
               <label className="form-label">Account Role</label>
-              <select className="form-input" value={role} onChange={e => setRole(e.target.value)}>
+              <select className="form-input custom-select" value={role} onChange={e => setRole(e.target.value)}>
                 <option value="student">Student Account</option>
                 <option value="admin">Administrator Account</option>
               </select>
