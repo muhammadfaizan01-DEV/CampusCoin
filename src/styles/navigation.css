@@ -1,4 +1,4 @@
-/* Navigation Header & Menus */
+/* Navigation Header & Responsive Layout */
 .nav-header {
   position: sticky;
   top: 0;
@@ -11,13 +11,14 @@
 }
 
 .nav-container {
-  max-width: 1380px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 12px 20px;
+  padding: 14px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .nav-brand {
@@ -67,10 +68,11 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: rgba(15, 23, 42, 0.3);
-  padding: 4px;
+  background: rgba(13, 21, 39, 0.6);
+  padding: 5px;
   border-radius: var(--radius-full);
   border: 1px solid var(--border-color);
+  flex-wrap: wrap;
 }
 
 .nav-link {
@@ -79,10 +81,11 @@
   gap: 8px;
   padding: 8px 16px;
   border-radius: var(--radius-full);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: var(--text-muted);
   background: transparent;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -93,13 +96,14 @@
 .nav-link.active {
   color: #fff;
   background: var(--accent-gradient);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
 }
 
 .nav-controls {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .balance-pill {
@@ -111,6 +115,7 @@
   font-size: 0.85rem;
   font-weight: 700;
   border: 1px solid var(--border-color);
+  white-space: nowrap;
 }
 
 .balance-pill.positive {
@@ -120,8 +125,8 @@
 }
 
 .balance-pill.negative {
-  background: rgba(239, 68, 68, 0.1);
-  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(244, 63, 94, 0.1);
+  border-color: rgba(244, 63, 94, 0.3);
   color: var(--accent-rose);
 }
 
@@ -136,6 +141,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  cursor: pointer;
 }
 
 .icon-btn:hover {
@@ -173,7 +179,7 @@
   background: var(--bg-modal);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
   padding: 8px;
   z-index: 1000;
   animation: fadeIn 0.15s ease;
@@ -214,7 +220,7 @@
 }
 
 .dropdown-item.danger:hover {
-  background: rgba(239, 68, 68, 0.15);
+  background: rgba(244, 63, 94, 0.15);
   color: var(--accent-rose);
 }
 
@@ -224,7 +230,7 @@
   gap: 10px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-color);
-  padding: 5px 12px 5px 6px;
+  padding: 5px 14px 5px 6px;
   border-radius: var(--radius-full);
   color: var(--text-main);
 }
@@ -264,13 +270,13 @@
 }
 
 .notif-item.danger {
-  background: rgba(239, 68, 68, 0.1);
+  background: rgba(244, 63, 94, 0.1);
   border-left: 3px solid var(--accent-rose);
 }
 
 .notif-item.warning {
   background: rgba(245, 158, 11, 0.1);
-  border-left: 3px solid var(--accent-amber);
+  border-left: 3px solid var(--accent-gold);
 }
 
 .notif-time {
@@ -295,3 +301,16 @@
   color: #fff; 
 }
 .menu-divider { height: 1px; background: var(--border-color); margin: 6px 0; }
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nav-links {
+    justify-content: center;
+  }
+  .nav-controls {
+    justify-content: center;
+  }
+}

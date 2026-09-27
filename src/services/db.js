@@ -1,4 +1,4 @@
-// CampusCoin Fail-Safe Database API Service (Supports Netlify/Vercel Client Live Deployment & Local Express REST API)
+// CampusCoin Ultra-Reliable Hybrid Database API Service
 
 const API_BASE = 'http://localhost:5000/api';
 
@@ -71,7 +71,7 @@ const generateSeedTransactions = () => {
     { id: 'tx_5', user_id: 'user_alex', category_id: 'exp_1', type: 'expense', amount: 92.40, description: 'Weekly Groceries at Trader Joe\'s', date: formatDate(3), recurring: false },
     { id: 'tx_6', user_id: 'user_alex', category_id: 'exp_2', type: 'expense', amount: 35.00, description: 'Monthly Campus Subway Pass', date: formatDate(2), recurring: true },
     { id: 'tx_7', user_id: 'user_alex', category_id: 'exp_3', type: 'expense', amount: 260.00, description: 'Quad Dorm Room Rent Share', date: formatDate(1), recurring: true },
-    { id: 'tx_8', user_id: 'user_alex', category_id: 'exp_4', type: 'expense', amount: 74.99, description: 'Algorithms & AI Specialization Textbook', date: formatDate(6), recurring: false },
+    { id: 'tx_8', user_id: 'user_alex', category_id: 'exp_4', type: 'expense', amount: 74.99, description: 'Algorithms Specialization Textbook', date: formatDate(6), recurring: false },
     { id: 'tx_9', user_id: 'user_alex', category_id: 'exp_5', type: 'expense', amount: 14.99, description: 'Spotify & Hulu Student Duo Bundle', date: formatDate(10), recurring: true },
     { id: 'tx_10', user_id: 'user_alex', category_id: 'exp_6', type: 'expense', amount: 28.00, description: 'Friday IMAX Movie Ticket', date: formatDate(7), recurring: false }
   );
@@ -97,7 +97,6 @@ const DEFAULT_BUDGETS = [
   { id: 'b_6', user_id: 'user_alex', category_id: 'exp_6', limit_amount: 60.00 }
 ];
 
-// Initialize Storage if missing
 export const initLocalData = () => {
   try {
     if (!localStorage.getItem(STORAGE_KEYS.USERS)) {
@@ -123,13 +122,13 @@ export const initLocalData = () => {
 initLocalData();
 
 async function fetchAPI(endpoint, options = {}) {
-  // Only attempt localhost fetch if running on http (local environment)
+  // Only attempt backend server API fetch if on local environment
   if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
     return null;
   }
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2000);
+    const timeoutId = setTimeout(() => controller.abort(), 1200);
     const res = await fetch(`${API_BASE}${endpoint}`, {
       headers: { 'Content-Type': 'application/json', ...options.headers },
       signal: controller.signal,
@@ -140,52 +139,69 @@ async function fetchAPI(endpoint, options = {}) {
       return await res.json();
     }
   } catch (err) {
-    // Ignore fetch error and fallback to localStorage
+    // Fallback to local storage if API server is not running
   }
   return null;
 }
 
 export const db = {
   async login(email, password) {
+    initLocalData();
+    const cleanEmail = (email || '').trim().toLowerCase();
+    const cleanPass = (password || '').trim();
+
+    // 1. Try Backend API Server
     const apiRes = await fetchAPI('/auth/login', {
       method: 'POST',
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ email: cleanEmail, password: cleanPass })
     });
     if (apiRes && apiRes.success) {
       localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(apiRes.user));
       return apiRes;
     }
 
+    // 2. Guaranteed Local Fallback Check
     const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || JSON.stringify(DEFAULT_USERS));
-    const user = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+    const user = users.find(u => u.email.toLowerCase() === cleanEmail && u.password === cleanPass);
     if (user) {
       localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(user));
       return { success: true, user };
     }
-    return { success: false, error: 'Invalid email address or password.' };
+    return { success: false, error: 'Invalid email address or password. Please check your credentials.' };
   },
 
   async register(name, email, password, role = 'student') {
+    initLocalData();
+    const cleanName = (name || '').trim();
+    const cleanEmail = (email || '').trim().toLowerCase();
+    const cleanPass = (password || '').trim();
+
+    // 1. Try Backend API Server
     const apiRes = await fetchAPI('/auth/register', {
       method: 'POST',
-      body: JSON.stringify({ name, email, password, role })
+      body: JSON.stringify({ name: cleanName, email: cleanEmail, password: cleanPass, role })
     });
     if (apiRes && apiRes.success) {
       localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(apiRes.user));
       return apiRes;
     }
 
+    // 2. Guaranteed Local Fallback Register
     const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || JSON.stringify(DEFAULT_USERS));
+    if (users.some(u => u.email.toLowerCase() === cleanEmail)) {
+      return { success: false, error: 'An account with this email address already exists.' };
+    }
+
     const newUser = {
       id: 'user_' + Date.now(),
-      name,
-      email,
-      password,
+      name: cleanName,
+      email: cleanEmail,
+      password: cleanPass,
       role,
       academic_year: 'Freshman (1st Year)',
       monthly_allowance_baseline: 500,
       savings_goal: 100,
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(name)}`,
+      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(cleanName)}`,
       created_at: new Date().toISOString()
     };
     users.push(newUser);
@@ -196,7 +212,13 @@ export const db = {
 
   getCurrentUser() {
     initLocalData();
-    return JSON.parse(localStorage.getItem(STORAGE_KEYS.CURRENT_USER) || JSON.stringify(DEFAULT_USERS[0]));
+    const raw = localStorage.getItem(STORAGE_KEYS.CURRENT_USER);
+    if (!raw) return DEFAULT_USERS[0];
+    try {
+      return JSON.parse(raw);
+    } catch (e) {
+      return DEFAULT_USERS[0];
+    }
   },
 
   setCurrentUser(user) {
