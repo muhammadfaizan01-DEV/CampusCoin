@@ -1,0 +1,253 @@
+# SOFTWARE REQUIREMENTS SPECIFICATION & PROJECT DOCUMENTATION
+## CampusCoin — Smart Spending Student Style
+**Theme**: NextGen BudgetBee  
+**Category**: End-to-End Web Solutions  
+**Document Version**: 1.0 Final  
+**Date**: September 2026  
+
+---
+
+## 📋 TABLE OF CONTENTS
+1. [Executive Summary & Problem Definition](#1-executive-summary--problem-definition)
+2. [Project Scope & Constraints](#2-project-scope--constraints)
+3. [Design Specifications & System Architecture](#3-design-specifications--system-architecture)
+4. [Process Flowcharts & Data Flow Diagrams (DFD)](#4-process-flowcharts--data-flow-diagrams-dfd)
+5. [Database Design & Entity-Relationship Schemas](#5-database-design--entity-relationship-schemas)
+6. [Comprehensive Test Data Sets](#6-comprehensive-test-data-sets)
+7. [Project Installation & Deployment Guide](#7-project-installation--deployment-guide)
+8. [Mandatory System User Credentials](#8-mandatory-system-user-credentials)
+
+---
+
+## 1. EXECUTIVE SUMMARY & PROBLEM DEFINITION
+
+### 1.1 Background and Necessity
+College and university students routinely manage money coming from irregular, multi-channel sources—such as monthly parental allowances, part-time or gig-work stipends, scholarships, grants, and occasional gifts. Despite managing substantial cash flows across varied spending channels (campus dining, hostel rent, textbooks, public transport, digital subscriptions, and social outings), students rarely maintain formal financial records.
+
+Generic adult financial tracking applications fail to cater to student realities because they:
+- Demand mandatory linked bank accounts and complex credit score integrations.
+- Enforce rigid adult pay-period cycles.
+- Charge subscription fees or bombard users with irrelevant mortgage/loan advertisements.
+
+### 1.2 Proposed Solution: CampusCoin
+CampusCoin is a lightweight, student-first Web Application designed specifically to make income and expense logging effortless, dynamic, and educational. Backed by modern web technologies, CampusCoin delivers:
+- **Fast Transaction Entry**: Student-specific categorization.
+- **Smart Auto-Categorizer**: Pattern-matching engine that maps merchant descriptions (e.g. *Campus Cafe* ➔ *Food*) in real time.
+- **Real-Time Budget Health**: Dynamic progress bars and automated warning popups when spend caps near limit.
+- **Monthly Analytics & PDF Exports**: Visual Chart.js doughnut breakdowns, 6-month trend bar charts, and downloadable high-resolution PDF financial reports.
+- **Admin Oversight Panel**: System default category controls, campus announcements broadcast, and platform statistics.
+
+---
+
+## 2. PROJECT SCOPE & CONSTRAINTS
+
+### 2.1 Project Scope
+CampusCoin includes:
+- **User Authentication**: Student registration, student login, direct admin access login, profile management.
+- **Transaction Ledger**: Filterable table with keyword search, date filtering, type toggle, edit/delete actions, and CSV import/export.
+- **Budget Goal Manager**: Monthly category caps with percentage consumption indicators and over-limit notifications.
+- **Smart Financial Insights Hub**: Narrative monthly summary, spike growth pattern detection, and impact-ranked saving tip cards.
+- **Admin Control Panel**: Manage default categories, edit user statuses, reset passwords, publish announcements, and view total campus volume.
+- **Accessibility & Theme System**: Dark/Light mode switcher and text size scaler (14px, 16px, 18px).
+- **Interactive Sitemap**: Built-in architecture map accessible via header and footer.
+
+### 2.2 System Constraints
+- **No Direct Bank API Integration**: Income and expense figures are manually entered or imported via standard CSV files.
+- **Advisory Guidance**: Financial advice is advisory and designed to cultivate healthy spending habits.
+- **Cross-Browser Compatibility**: Engineered to run seamlessly across all major web browsers (Chrome, Edge, Firefox, Safari) and screen dimensions.
+
+---
+
+## 3. DESIGN SPECIFICATIONS & SYSTEM ARCHITECTURE
+
+### 3.1 High-Level 3-Tier Architecture
+```
++-------------------------------------------------------------------+
+|                     PRESENTATION LAYER (Frontend)                 |
+|  React SPA + Vite | Custom Glassmorphism CSS | Chart.js | Lucide  |
++-------------------------------------------------------------------+
+                                  │
+                                  ▼
++-------------------------------------------------------------------+
+|                     APPLICATION & API LAYER                       |
+|  Express Node REST Server (:5000) OR PHP REST API (api.php)       |
++-------------------------------------------------------------------+
+                                  │
+                                  ▼
++-------------------------------------------------------------------+
+|                        DATA PERSISTENCE LAYER                     |
+|  MySQL (campuscoin.sql) | SQLite (database.sqlite) | JSON DB      |
++-------------------------------------------------------------------+
+```
+
+### 3.2 Visual Sitemap Architecture
+```
+🌐 CampusCoin Web App Root
+├── 1.0 Student Dashboard
+│   ├── Quick Net Balance Header
+│   ├── Quick-Add Income/Expense Modals
+│   ├── Metric Summary Cards
+│   ├── Top Spending Category Widget
+│   └── Category Budget Consumption Bars
+├── 2.0 Transactions Ledger
+│   ├── Interactive Search & Filter Bar
+│   ├── Smart Auto-Categorizer Modal
+│   ├── Transaction History Table
+│   ├── CSV Bulk Import & Export
+│   └── Anomaly Alert Detector
+├── 3.0 Budget Goals & Alerts
+│   ├── Category Spend Caps Editor
+│   ├── Real-time % Progress Indicators
+│   ├── Projected Month-End Forecast Calculator
+│   └── Over-Limit Warning Badges
+├── 4.0 Monthly Reports & Analytics
+│   ├── Category Spend Doughnut Chart
+│   ├── 6-Month Income vs Expense Bar Chart
+│   ├── Filterable Summary Timelines
+│   └── Downloadable PDF Report Generator
+├── 5.0 Smart Insights & Savings Hub
+│   ├── Plain-Language Financial Analysis
+│   ├── Spike & Growth Pattern Flagging
+│   ├── Estimated Savings Tip Cards
+│   └── Tip Pinning & Bookmarking
+└── 6.0 Admin Control Panel
+    ├── System Overview & Usage Statistics
+    ├── Default Category Manager
+    ├── Campus Announcements Broadcaster
+    └── User Account Management & Password Resets
+```
+
+---
+
+## 4. PROCESS FLOWCHARTS & DATA FLOW DIAGRAMS (DFD)
+
+### 4.1 DFD Level 0 (Context Level Diagram)
+```
+ +-----------------+                +--------------------+                +------------------+
+ |                 |  Credentials   |                    |   Category Data |                  |
+ |  Student User   | -------------> |                    | <-------------  |   Admin User     |
+ |                 | <------------- |                    | ------------->  |                  |
+ +-----------------+  Reports & Tips|    CAMPUS COIN     |   Announcements +------------------+
+                                    |    WEB SYSTEM      |
+                                    |                    |
+                                    +--------------------+
+                                              │
+                                              ▼
+                                    +--------------------+
+                                    |  Database Server   |
+                                    |  (MySQL / SQLite)  |
+                                    +--------------------+
+```
+
+### 4.2 DFD Level 1 (Decomposition Diagram)
+- **Process 1.0 Authentication**: Verifies user email & password against stored user credentials.
+- **Process 2.0 Transaction Processing**: Validates entry, executes smart category auto-suggestion, checks for spend anomalies (>2.5x avg), and updates ledger.
+- **Process 3.0 Budget Engine**: Computes total category spend against set limits and triggers warning popups if percentage >= 80%.
+- **Process 4.0 Insights Generator**: Compares current month spending against historical baseline to generate pattern narrative summaries.
+- **Process 5.0 Administration**: Adds system default categories, manages student user statuses, and broadcasts campus announcements.
+
+---
+
+## 5. DATABASE DESIGN & ENTITY-RELATIONSHIP SCHEMAS
+
+### 5.1 Relational Database Tables
+
+#### Table: `users`
+| Column Name | Data Type | Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `user_id` | VARCHAR(50) | PRIMARY KEY | Unique student or admin identifier |
+| `name` | VARCHAR(100) | NOT NULL | Full name of the user |
+| `email` | VARCHAR(120) | UNIQUE, NOT NULL | Login email address |
+| `password_hash` | VARCHAR(255) | NOT NULL | Account password string |
+| `role` | ENUM('student','admin') | DEFAULT 'student' | System access role |
+| `academic_year` | VARCHAR(50) | NULLABLE | Academic standing (e.g. Junior '27) |
+| `monthly_allowance_baseline` | DECIMAL(10,2) | DEFAULT 500.00 | Monthly target allowance baseline |
+| `savings_goal` | DECIMAL(10,2) | DEFAULT 100.00 | Monthly target savings amount |
+| `avatar` | VARCHAR(255) | NULLABLE | Profile avatar image URL |
+| `created_at` | DATETIME | DEFAULT CURRENT_TIMESTAMP | Record creation timestamp |
+
+#### Table: `categories`
+| Column Name | Data Type | Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `category_id` | VARCHAR(50) | PRIMARY KEY | Unique category identifier |
+| `name` | VARCHAR(100) | NOT NULL | Category name (e.g. Food & Dining) |
+| `type` | ENUM('income','expense') | NOT NULL | Category classification |
+| `is_default` | TINYINT(1) | DEFAULT 1 | Whether category is system default |
+| `icon` | VARCHAR(50) | DEFAULT 'Package' | Lucide icon symbol key |
+| `color` | VARCHAR(20) | DEFAULT '#10b981' | UI theme accent color |
+
+#### Table: `transactions`
+| Column Name | Data Type | Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `transaction_id` | VARCHAR(50) | PRIMARY KEY | Unique transaction record ID |
+| `user_id` | VARCHAR(50) | FOREIGN KEY (users.user_id) | References user |
+| `category_id` | VARCHAR(50) | FOREIGN KEY (categories.category_id) | References category |
+| `type` | ENUM('income','expense') | NOT NULL | Transaction type |
+| `amount` | DECIMAL(10,2) | NOT NULL | Transaction monetary amount |
+| `description` | VARCHAR(255) | NOT NULL | Transaction description note |
+| `date` | DATE | NOT NULL | Transaction date |
+| `recurring` | TINYINT(1) | DEFAULT 0 | 1 if monthly recurring |
+| `created_at` | DATETIME | DEFAULT CURRENT_TIMESTAMP | Record creation timestamp |
+
+#### Table: `budgets`
+| Column Name | Data Type | Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `budget_id` | VARCHAR(50) | PRIMARY KEY | Unique budget entry ID |
+| `user_id` | VARCHAR(50) | FOREIGN KEY (users.user_id) | References user |
+| `category_id` | VARCHAR(50) | FOREIGN KEY (categories.category_id) | References category |
+| `limit_amount` | DECIMAL(10,2) | NOT NULL | Monthly budget spend cap |
+
+---
+
+## 6. COMPREHENSIVE TEST DATA SETS
+
+### 6.1 Sample Categories Test Set
+- **Income Categories**: Allowance ($550.00 baseline), Part-time Job ($240.00 tutoring stipend), Scholarship, Gift & Cash, Other Income.
+- **Expense Categories**: Food & Dining (Canteen, Groceries), Campus Transport (Subway pass), Dorm & Rent ($260.00 room share), Academics & Books ($74.99 algorithms text), Digital Subscriptions ($14.99 Spotify bundle), Social & Outings ($28.00 IMAX tickets), Miscellaneous.
+
+### 6.2 Sample Historical Trend Test Set
+- Pre-populated with 6 months of historical entries for Alex Rivera to demonstrate chart trend rendering, month-over-month comparison, and velocity calculation immediately upon installation.
+
+---
+
+## 7. PROJECT INSTALLATION & DEPLOYMENT GUIDE
+
+### 7.1 Local Development Environment (Node.js & Vite)
+1. Navigate to the project root directory:
+   ```bash
+   cd c:\Users\std\Desktop\techwiz
+   ```
+2. Install npm dependencies:
+   ```bash
+   npm install
+   ```
+3. Start local development server:
+   ```bash
+   npm run dev
+   ```
+4. Open your web browser at: **`http://localhost:3000`**
+
+### 7.2 Express REST API Database Server (Optional Port 5000)
+To run the Express REST API backend database server concurrently:
+```bash
+node server/server.js
+```
+
+### 7.3 MySQL Database Import (XAMPP / WAMP)
+1. Open phpMyAdmin or MySQL Workbench.
+2. Create database `campuscoin_db` or execute the included SQL script:
+   ```sql
+   SOURCE c:/Users/std/Desktop/techwiz/campuscoin.sql;
+   ```
+
+---
+
+## 8. MANDATORY SYSTEM USER CREDENTIALS
+
+| User Role | Email Address | Password | Privileges |
+| :--- | :--- | :--- | :--- |
+| **Demo Student** | `alex@campus.edu` | `password123` | Full Student Dashboard, Transactions, Budgets & Reports |
+| **Demo Admin** | `admin@campuscoin.com` | `admin123` | Admin Control Panel, User Management, Default Categories & Broadcasts |
+
+---
+*Documentation compiled for TechWiz Competition evaluation submission.*
