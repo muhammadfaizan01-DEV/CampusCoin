@@ -111,9 +111,6 @@ export const initLocalData = () => {
     if (!localStorage.getItem(STORAGE_KEYS.BUDGETS)) {
       localStorage.setItem(STORAGE_KEYS.BUDGETS, JSON.stringify(DEFAULT_BUDGETS));
     }
-    if (!localStorage.getItem(STORAGE_KEYS.CURRENT_USER)) {
-      localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(DEFAULT_USERS[0]));
-    }
   } catch (e) {
     console.error("Local storage init error", e);
   }
@@ -122,7 +119,6 @@ export const initLocalData = () => {
 initLocalData();
 
 async function fetchAPI(endpoint, options = {}) {
-  // Only attempt backend server API fetch if on local environment
   if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
     return null;
   }
@@ -139,7 +135,7 @@ async function fetchAPI(endpoint, options = {}) {
       return await res.json();
     }
   } catch (err) {
-    // Fallback to local storage if API server is not running
+    // Fallback
   }
   return null;
 }
@@ -150,7 +146,6 @@ export const db = {
     const cleanEmail = (email || '').trim().toLowerCase();
     const cleanPass = (password || '').trim();
 
-    // 1. Try Backend API Server
     const apiRes = await fetchAPI('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email: cleanEmail, password: cleanPass })
@@ -160,7 +155,6 @@ export const db = {
       return apiRes;
     }
 
-    // 2. Guaranteed Local Fallback Check
     const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || JSON.stringify(DEFAULT_USERS));
     const user = users.find(u => u.email.toLowerCase() === cleanEmail && u.password === cleanPass);
     if (user) {
@@ -176,7 +170,6 @@ export const db = {
     const cleanEmail = (email || '').trim().toLowerCase();
     const cleanPass = (password || '').trim();
 
-    // 1. Try Backend API Server
     const apiRes = await fetchAPI('/auth/register', {
       method: 'POST',
       body: JSON.stringify({ name: cleanName, email: cleanEmail, password: cleanPass, role })
@@ -186,7 +179,6 @@ export const db = {
       return apiRes;
     }
 
-    // 2. Guaranteed Local Fallback Register
     const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || JSON.stringify(DEFAULT_USERS));
     if (users.some(u => u.email.toLowerCase() === cleanEmail)) {
       return { success: false, error: 'An account with this email address already exists.' };
@@ -213,11 +205,11 @@ export const db = {
   getCurrentUser() {
     initLocalData();
     const raw = localStorage.getItem(STORAGE_KEYS.CURRENT_USER);
-    if (!raw) return DEFAULT_USERS[0];
+    if (!raw || raw === 'null') return null;
     try {
       return JSON.parse(raw);
     } catch (e) {
-      return DEFAULT_USERS[0];
+      return null;
     }
   },
 

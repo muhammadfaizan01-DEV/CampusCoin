@@ -61,13 +61,18 @@ export const Navbar = () => {
     navItems.push({ id: 'admin', label: 'Admin Panel', icon: ShieldCheck });
   }
 
+  const handleSignOut = () => {
+    setIsProfileMenuOpen(false);
+    logout();
+  };
+
   return (
     <header className="nav-header">
       <div className="nav-container">
-        {/* Brand Logo */}
+        {/* Brand Logo Left */}
         <div className="nav-brand" onClick={() => setActiveTab('dashboard')}>
           <div className="brand-icon-wrapper">
-            <Coins className="brand-icon" size={26} />
+            <Coins className="brand-icon" size={24} />
           </div>
           <div className="brand-text">
             <span className="brand-title">CampusCoin</span>
@@ -75,7 +80,7 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {/* Main Navigation Links */}
+        {/* Main Navigation Links Middle */}
         <nav className="nav-links">
           {navItems.map(item => {
             const Icon = item.icon;
@@ -86,14 +91,14 @@ export const Navbar = () => {
                 className={`nav-link ${isActive ? 'active' : ''}`}
                 onClick={() => setActiveTab(item.id)}
               >
-                <Icon size={18} />
+                <Icon size={16} />
                 <span>{item.label}</span>
               </button>
             );
           })}
         </nav>
 
-        {/* Action Controls & User Profile */}
+        {/* Action Controls & User Profile Right */}
         <div className="nav-controls">
           {/* Quick Balance Pill */}
           {currentUser && (
@@ -109,7 +114,7 @@ export const Navbar = () => {
             title="View Sitemap" 
             onClick={() => setIsSitemapOpen(true)}
           >
-            <Map size={19} />
+            <Map size={18} />
           </button>
 
           {/* Font Size Adjuster Menu */}
@@ -119,7 +124,7 @@ export const Navbar = () => {
               title="Font Size Accessibility"
               onClick={() => setIsFontMenuOpen(!isFontMenuOpen)}
             >
-              <Type size={19} />
+              <Type size={18} />
             </button>
             {isFontMenuOpen && (
               <div className="dropdown-menu">
@@ -137,7 +142,7 @@ export const Navbar = () => {
             title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`} 
             onClick={toggleTheme}
           >
-            {theme === 'dark' ? <Sun size={19} /> : <Moon size={19} />}
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
           {/* Notifications Drawer Toggle */}
@@ -147,7 +152,7 @@ export const Navbar = () => {
               onClick={() => setIsNotifOpen(!isNotifOpen)}
               title="Notifications"
             >
-              <Bell size={19} />
+              <Bell size={18} />
               {notifications.length > 0 && <span className="notif-badge">{notifications.length}</span>}
             </button>
             {isNotifOpen && (
@@ -176,7 +181,7 @@ export const Navbar = () => {
               >
                 <img src={currentUser.avatar} alt={currentUser.name} className="user-avatar" />
                 <span className="user-name">{currentUser.name}</span>
-                <ChevronDown size={16} />
+                <ChevronDown size={15} />
               </button>
               {isProfileMenuOpen && (
                 <div className="dropdown-menu profile-menu">
@@ -189,7 +194,7 @@ export const Navbar = () => {
                   <button className="dropdown-item" onClick={() => { setActiveTab('profile'); setIsProfileMenuOpen(false); }}>
                     <User size={16} /> Edit Profile
                   </button>
-                  <button className="dropdown-item danger" onClick={() => { logout(); setIsProfileMenuOpen(false); }}>
+                  <button className="dropdown-item danger" onClick={handleSignOut}>
                     <LogOut size={16} /> Sign Out
                   </button>
                 </div>
