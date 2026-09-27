@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CampusCoin High-End Fintech Design System & Theme Engine
+   CampusCoin High-End Fintech Design System & Light/Dark Theme Engine
    ========================================================================== */
 
 :root {
@@ -9,6 +9,7 @@
   --bg-card-hover: rgba(22, 33, 62, 0.85);
   --bg-modal: #0d1322;
   --bg-input: rgba(15, 23, 42, 0.7);
+  --nav-pills-bg: rgba(13, 21, 39, 0.6);
   
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
@@ -18,11 +19,11 @@
   --accent-cyan: #06b6d4; /* Electric Cyan */
   --accent-gradient: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
   
-  --accent-purple: #8b5cf6; /* AI Neon Purple */
+  --accent-purple: #8b5cf6; /* Neon Purple */
   --accent-purple-gradient: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
 
-  --accent-gold: #f59e0b; /* Amber / Gold */
-  --accent-rose: #f43f5e; /* Rose / Danger */
+  --accent-gold: #f59e0b;
+  --accent-rose: #f43f5e;
 
   --border-color: rgba(255, 255, 255, 0.08);
   --border-glow: rgba(16, 185, 129, 0.4);
@@ -46,22 +47,23 @@
 }
 
 [data-theme="light"] {
-  --bg-dark: #f8fafc;
-  --bg-card: rgba(255, 255, 255, 0.9);
-  --bg-card-hover: #ffffff;
+  --bg-dark: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
   --bg-modal: #ffffff;
-  --bg-input: #f1f5f9;
+  --bg-input: #f8fafc;
+  --nav-pills-bg: #e2e8f0;
   
   --text-main: #0f172a;
-  --text-muted: #475569;
-  --text-dim: #94a3b8;
+  --text-muted: #334155;
+  --text-dim: #64748b;
 
-  --border-color: rgba(0, 0, 0, 0.08);
+  --border-color: rgba(15, 23, 42, 0.12);
   --border-glow: rgba(16, 185, 129, 0.4);
 
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --glass-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(15, 23, 42, 0.1);
+  --glass-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
 }
 
 /* Accessibility Text Size Scalers */
@@ -79,9 +81,9 @@ html.font-lg { font-size: 18px; }
 body {
   background-color: var(--bg-dark);
   background-image: 
-    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.12) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.12) 0px, transparent 50%),
-    radial-gradient(at 50% 100%, rgba(6, 182, 212, 0.08) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(6, 182, 212, 0.06) 0px, transparent 50%);
   background-attachment: fixed;
   color: var(--text-main);
   font-family: var(--font-body);
@@ -95,6 +97,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   letter-spacing: -0.02em;
+  color: var(--text-main);
 }
 
 button {
@@ -120,11 +123,11 @@ input, select, textarea {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.25);
+  background: rgba(148, 163, 184, 0.3);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.45);
+  background: rgba(148, 163, 184, 0.5);
 }
 
 /* App Containers */
@@ -139,7 +142,7 @@ input, select, textarea {
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-  padding: 28px 24px 70px 24px;
+  padding: 28px 32px 70px 32px;
 }
 
 /* Glassmorphism Cards */
@@ -157,7 +160,7 @@ input, select, textarea {
 }
 
 .glass-card:hover {
-  border-color: rgba(16, 185, 129, 0.25);
+  border-color: rgba(16, 185, 129, 0.3);
 }
 
 /* Buttons */
@@ -245,7 +248,7 @@ input, select, textarea {
 
 .badge-warning {
   background: rgba(245, 158, 11, 0.15);
-  color: #f59e0b;
+  color: #d97706;
   border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
@@ -257,7 +260,7 @@ input, select, textarea {
 
 .badge-purple {
   background: rgba(139, 92, 246, 0.15);
-  color: #a855f7;
+  color: #8b5cf6;
   border: 1px solid rgba(139, 92, 246, 0.3);
 }
 
@@ -276,16 +279,16 @@ input, select, textarea {
 }
 
 .form-input {
-  background: var(--bg-input);
-  border: 1px solid var(--border-color);
-  color: var(--text-main);
+  background: var(--bg-input) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-main) !important;
   padding: 11px 16px;
   border-radius: var(--radius-sm);
   font-size: 0.95rem;
 }
 
 .form-input:focus {
-  border-color: var(--accent-primary);
+  border-color: var(--accent-primary) !important;
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
 
