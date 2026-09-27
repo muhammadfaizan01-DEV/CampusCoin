@@ -1,0 +1,132 @@
+/* Admin Panel & Profile Styles */
+.admin-page, .profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-header-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-badge-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: var(--accent-gradient);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-nav-bar {
+  display: flex;
+  gap: 8px;
+  padding: 6px;
+}
+
+.admin-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.admin-nav-btn:hover { color: var(--text-main); background: rgba(255, 255, 255, 0.04); }
+.admin-nav-btn.active {
+  background: var(--accent-gradient);
+  color: #fff;
+}
+
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar-sm {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.u-name-text { font-weight: 700; }
+
+.admin-form {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.announcement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.ann-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  padding: 14px;
+  border-radius: var(--radius-md);
+}
+.ann-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.ann-header h4 { font-size: 0.98rem; }
+.ann-date { font-size: 0.75rem; color: var(--text-dim); }
+
+.admin-denied {
+  text-align: center;
+  padding: 60px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.icon-rose { color: var(--accent-rose); }
+.admin-denied code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  color: var(--accent-primary);
+}
+
+/* Profile Specific */
+.profile-card {
+  max-width: 640px;
+}
+
+.user-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 18px;
+}
+
+.profile-avatar-lg {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-primary);
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

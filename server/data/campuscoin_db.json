@@ -1,0 +1,415 @@
+{
+  "users": [
+    {
+      "id": "user_alex",
+      "name": "Alex Rivera",
+      "email": "alex@campus.edu",
+      "password": "password123",
+      "role": "student",
+      "academic_year": "Junior (Computer Science B.S. '27)",
+      "monthly_allowance_baseline": 680,
+      "savings_goal": 180,
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80",
+      "created_at": "2026-03-31T10:44:27.675Z"
+    },
+    {
+      "id": "user_admin",
+      "name": "Campus Financial Admin",
+      "email": "admin@campuscoin.com",
+      "password": "admin123",
+      "role": "admin",
+      "academic_year": "Student Affairs Office",
+      "monthly_allowance_baseline": 0,
+      "savings_goal": 0,
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=250&q=80",
+      "created_at": "2025-09-27T10:44:27.675Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "inc_1",
+      "name": "Allowance",
+      "type": "income",
+      "is_default": true,
+      "icon": "Wallet",
+      "color": "#10b981"
+    },
+    {
+      "id": "inc_2",
+      "name": "Part-time Job",
+      "type": "income",
+      "is_default": true,
+      "icon": "Briefcase",
+      "color": "#06b6d4"
+    },
+    {
+      "id": "inc_3",
+      "name": "Scholarship",
+      "type": "income",
+      "is_default": true,
+      "icon": "GraduationCap",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": "inc_4",
+      "name": "Gift & Cash",
+      "type": "income",
+      "is_default": true,
+      "icon": "Gift",
+      "color": "#ec4899"
+    },
+    {
+      "id": "inc_5",
+      "name": "Other Income",
+      "type": "income",
+      "is_default": true,
+      "icon": "Coins",
+      "color": "#f59e0b"
+    },
+    {
+      "id": "exp_1",
+      "name": "Food & Dining",
+      "type": "expense",
+      "is_default": true,
+      "icon": "Utensils",
+      "color": "#ef4444"
+    },
+    {
+      "id": "exp_2",
+      "name": "Campus Transport",
+      "type": "expense",
+      "is_default": true,
+      "icon": "Bus",
+      "color": "#06b6d4"
+    },
+    {
+      "id": "exp_3",
+      "name": "Dorm & Rent",
+      "type": "expense",
+      "is_default": true,
+      "icon": "Home",
+      "color": "#3b82f6"
+    },
+    {
+      "id": "exp_4",
+      "name": "Academics & Books",
+      "type": "expense",
+      "is_default": true,
+      "icon": "BookOpen",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": "exp_5",
+      "name": "Digital Subscriptions",
+      "type": "expense",
+      "is_default": true,
+      "icon": "Tv",
+      "color": "#a855f7"
+    },
+    {
+      "id": "exp_6",
+      "name": "Social & Outings",
+      "type": "expense",
+      "is_default": true,
+      "icon": "Film",
+      "color": "#f59e0b"
+    },
+    {
+      "id": "exp_7",
+      "name": "Miscellaneous",
+      "type": "expense",
+      "is_default": true,
+      "icon": "Package",
+      "color": "#64748b"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "tx_1",
+      "user_id": "user_alex",
+      "category_id": "inc_1",
+      "type": "income",
+      "amount": 550,
+      "description": "Monthly Family Allowance",
+      "date": "2026-09-25",
+      "recurring": true
+    },
+    {
+      "id": "tx_2",
+      "user_id": "user_alex",
+      "category_id": "inc_2",
+      "type": "income",
+      "amount": 240,
+      "description": "CS Lab Peer Tutor Stipend",
+      "date": "2026-09-19",
+      "recurring": false
+    },
+    {
+      "id": "tx_3",
+      "user_id": "user_alex",
+      "category_id": "inc_4",
+      "type": "income",
+      "amount": 60,
+      "description": "Grandma Birthday Gift",
+      "date": "2026-09-12",
+      "recurring": false
+    },
+    {
+      "id": "tx_4",
+      "user_id": "user_alex",
+      "category_id": "exp_1",
+      "type": "expense",
+      "amount": 38.5,
+      "description": "Campus Center Cafe & Grill",
+      "date": "2026-09-26",
+      "recurring": false
+    },
+    {
+      "id": "tx_5",
+      "user_id": "user_alex",
+      "category_id": "exp_1",
+      "type": "expense",
+      "amount": 92.4,
+      "description": "Weekly Groceries at Trader Joe's",
+      "date": "2026-09-24",
+      "recurring": false
+    },
+    {
+      "id": "tx_6",
+      "user_id": "user_alex",
+      "category_id": "exp_2",
+      "type": "expense",
+      "amount": 35,
+      "description": "Monthly Campus Subway Pass",
+      "date": "2026-09-25",
+      "recurring": true
+    },
+    {
+      "id": "tx_7",
+      "user_id": "user_alex",
+      "category_id": "exp_3",
+      "type": "expense",
+      "amount": 260,
+      "description": "Quad Dorm Room Rent Share",
+      "date": "2026-09-26",
+      "recurring": true
+    },
+    {
+      "id": "tx_8",
+      "user_id": "user_alex",
+      "category_id": "exp_4",
+      "type": "expense",
+      "amount": 74.99,
+      "description": "Algorithms & AI Specialization Textbook",
+      "date": "2026-09-21",
+      "recurring": false
+    },
+    {
+      "id": "tx_9",
+      "user_id": "user_alex",
+      "category_id": "exp_5",
+      "type": "expense",
+      "amount": 14.99,
+      "description": "Spotify & Hulu Student Duo Bundle",
+      "date": "2026-09-17",
+      "recurring": true
+    },
+    {
+      "id": "tx_10",
+      "user_id": "user_alex",
+      "category_id": "exp_6",
+      "type": "expense",
+      "amount": 28,
+      "description": "Friday IMAX Movie Ticket",
+      "date": "2026-09-20",
+      "recurring": false
+    },
+    {
+      "id": "tx_h_inc_1",
+      "user_id": "user_alex",
+      "category_id": "inc_1",
+      "type": "income",
+      "amount": 620,
+      "description": "Monthly Allowance",
+      "date": "2026-08-01"
+    },
+    {
+      "id": "tx_h_exp_food_1",
+      "user_id": "user_alex",
+      "category_id": "exp_1",
+      "type": "expense",
+      "amount": 152,
+      "description": "Campus Dining & Canteen",
+      "date": "2026-08-11"
+    },
+    {
+      "id": "tx_h_exp_rent_1",
+      "user_id": "user_alex",
+      "category_id": "exp_3",
+      "type": "expense",
+      "amount": 260,
+      "description": "Dorm Housing",
+      "date": "2026-08-01"
+    },
+    {
+      "id": "tx_h_inc_2",
+      "user_id": "user_alex",
+      "category_id": "inc_1",
+      "type": "income",
+      "amount": 640,
+      "description": "Monthly Allowance",
+      "date": "2026-07-01"
+    },
+    {
+      "id": "tx_h_exp_food_2",
+      "user_id": "user_alex",
+      "category_id": "exp_1",
+      "type": "expense",
+      "amount": 164,
+      "description": "Campus Dining & Canteen",
+      "date": "2026-07-11"
+    },
+    {
+      "id": "tx_h_exp_rent_2",
+      "user_id": "user_alex",
+      "category_id": "exp_3",
+      "type": "expense",
+      "amount": 260,
+      "description": "Dorm Housing",
+      "date": "2026-07-01"
+    },
+    {
+      "id": "tx_h_inc_3",
+      "user_id": "user_alex",
+      "category_id": "inc_1",
+      "type": "income",
+      "amount": 660,
+      "description": "Monthly Allowance",
+      "date": "2026-06-01"
+    },
+    {
+      "id": "tx_h_exp_food_3",
+      "user_id": "user_alex",
+      "category_id": "exp_1",
+      "type": "expense",
+      "amount": 176,
+      "description": "Campus Dining & Canteen",
+      "date": "2026-06-11"
+    },
+    {
+      "id": "tx_h_exp_rent_3",
+      "user_id": "user_alex",
+      "category_id": "exp_3",
+      "type": "expense",
+      "amount": 260,
+      "description": "Dorm Housing",
+      "date": "2026-06-01"
+    },
+    {
+      "id": "tx_h_inc_4",
+      "user_id": "user_alex",
+      "category_id": "inc_1",
+      "type": "income",
+      "amount": 680,
+      "description": "Monthly Allowance",
+      "date": "2026-05-01"
+    },
+    {
+      "id": "tx_h_exp_food_4",
+      "user_id": "user_alex",
+      "category_id": "exp_1",
+      "type": "expense",
+      "amount": 188,
+      "description": "Campus Dining & Canteen",
+      "date": "2026-05-11"
+    },
+    {
+      "id": "tx_h_exp_rent_4",
+      "user_id": "user_alex",
+      "category_id": "exp_3",
+      "type": "expense",
+      "amount": 260,
+      "description": "Dorm Housing",
+      "date": "2026-05-01"
+    },
+    {
+      "id": "tx_h_inc_5",
+      "user_id": "user_alex",
+      "category_id": "inc_1",
+      "type": "income",
+      "amount": 700,
+      "description": "Monthly Allowance",
+      "date": "2026-04-01"
+    },
+    {
+      "id": "tx_h_exp_food_5",
+      "user_id": "user_alex",
+      "category_id": "exp_1",
+      "type": "expense",
+      "amount": 200,
+      "description": "Campus Dining & Canteen",
+      "date": "2026-04-11"
+    },
+    {
+      "id": "tx_h_exp_rent_5",
+      "user_id": "user_alex",
+      "category_id": "exp_3",
+      "type": "expense",
+      "amount": 260,
+      "description": "Dorm Housing",
+      "date": "2026-04-01"
+    }
+  ],
+  "budgets": [
+    {
+      "id": "b_1",
+      "user_id": "user_alex",
+      "category_id": "exp_1",
+      "limit_amount": 200
+    },
+    {
+      "id": "b_2",
+      "user_id": "user_alex",
+      "category_id": "exp_2",
+      "limit_amount": 50
+    },
+    {
+      "id": "b_3",
+      "user_id": "user_alex",
+      "category_id": "exp_3",
+      "limit_amount": 260
+    },
+    {
+      "id": "b_4",
+      "user_id": "user_alex",
+      "category_id": "exp_4",
+      "limit_amount": 120
+    },
+    {
+      "id": "b_5",
+      "user_id": "user_alex",
+      "category_id": "exp_5",
+      "limit_amount": 25
+    },
+    {
+      "id": "b_6",
+      "user_id": "user_alex",
+      "category_id": "exp_6",
+      "limit_amount": 60
+    }
+  ],
+  "announcements": [
+    {
+      "id": "ann_1",
+      "title": "Campus Financial Aid Deadline",
+      "text": "Spring semester scholarship applications close October 15th. Apply via Student Portal.",
+      "date": "2026-09-22"
+    },
+    {
+      "id": "ann_2",
+      "title": "Student Budgeting Workshop",
+      "text": "Join the Student Financial Literacy Club this Thursday at 5 PM in Union Room 204.",
+      "date": "2026-09-15"
+    }
+  ]
+}

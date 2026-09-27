@@ -1,0 +1,65 @@
+================================================================================
+CAMPUS COIN - SOFTWARE REQUIREMENTS SPECIFICATION SUBMISSION DOCUMENT
+Theme: NextGen BudgetBee | Category: End-to-End Web Solutions
+================================================================================
+
+PROJECT OVERVIEW:
+CampusCoin is a lightweight, student-first Web Application designed for college and 
+university students to log income and expenses, view spending by category, track budget 
+caps, receive smart savings guidance, generate monthly PDF reports, and provide full 
+administrator oversight.
+
+--------------------------------------------------------------------------------
+1. TECHNOLOGY STACK
+--------------------------------------------------------------------------------
+FRONTEND:
+- Framework: React (SPA with Vite)
+- Design System: Custom Vanilla CSS (Frosted Glassmorphism, Dark/Light Theme Engine, Text Font Scaler Accessibility)
+- Data Visualization: Chart.js & react-chartjs-2 (Category Doughnut & 6-Month Income vs Expense Bar Chart)
+- Icons & Badging: Custom Vector SVG Category Badges (`CategoryIcon.jsx`)
+- Export Engine: html2canvas & jsPDF (High-Resolution PDF Monthly Financial Report Export)
+
+BACKEND (PHP & NODE REST API):
+- PHP Backend: `php-backend/api.php` (PHP REST API for PHP web server deployments)
+- Node/Express Backend: `server/server.js` (Express REST API Server on port 5000)
+- SQL Script: `campuscoin.sql` (Complete MySQL Database Schema & Table Definitions)
+
+--------------------------------------------------------------------------------
+2. MANDATORY DEMO CREDENTIALS
+--------------------------------------------------------------------------------
+STUDENT USER ACCOUNT:
+- Email: alex@campus.edu
+- Password: password123
+- Role: Student (Pre-loaded 6-month historical data for Alex Rivera)
+
+ADMINISTRATOR ACCOUNT:
+- Email: admin@campuscoin.com
+- Password: admin123
+- Role: Admin (System-wide Control Panel, User Management, Announcements)
+
+* Note: The login modal contains 1-Click Demo Login buttons for instant evaluation.
+
+--------------------------------------------------------------------------------
+3. INSTALLATION & RUNNING INSTRUCTIONS
+--------------------------------------------------------------------------------
+STEP 1: Open Terminal in the project directory:
+   cd c:\Users\std\Desktop\techwiz
+
+STEP 2: Start the application development server:
+   npm run dev
+
+STEP 3: Open browser at http://localhost:3000
+
+PHP BACKEND DEPLOYMENT (OPTIONAL):
+- Copy `php-backend/api.php` and import `campuscoin.sql` into your MySQL / XAMPP / WAMP server.
+
+--------------------------------------------------------------------------------
+4. ASSUMPTIONS MADE
+--------------------------------------------------------------------------------
+1. Financial entries represent student-reported manual income & expense logs without direct banking credentials.
+2. Smart Auto-Categorization uses pattern-matching rules tailored to student lifestyle routines.
+3. System default categories are editable by campus administrators while personal categories can be added/deleted by students.
+
+================================================================================
+END OF DOCUMENT
+================================================================================

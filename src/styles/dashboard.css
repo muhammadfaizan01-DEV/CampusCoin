@@ -1,0 +1,288 @@
+/* Dashboard Page Styles */
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dashboard-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: linear-gradient(135deg, rgba(18, 24, 43, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border-left: 4px solid var(--accent-primary);
+}
+
+.greeting-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--accent-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.highlight-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-top: 4px;
+}
+
+.welcome-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.metric-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.metric-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.metric-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.metric-icon.income { background: rgba(16, 185, 129, 0.15); color: var(--accent-primary); }
+.metric-icon.expense { background: rgba(239, 68, 68, 0.15); color: var(--accent-rose); }
+.metric-icon.purple { background: rgba(139, 92, 246, 0.15); color: var(--accent-purple); }
+
+.metric-value {
+  font-family: var(--font-heading);
+  font-size: 2.1rem;
+  font-weight: 800;
+  margin: 12px 0 6px 0;
+}
+
+.metric-footer {
+  font-size: 0.78rem;
+}
+
+.text-success { color: var(--accent-primary); }
+.text-danger { color: var(--accent-rose); }
+
+/* Dashboard Two-Column Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 992px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-welcome {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.dash-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.title-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.title-box h3 {
+  font-size: 1.15rem;
+}
+
+.icon-purple { color: var(--accent-purple); }
+.icon-green { color: var(--accent-primary); }
+.icon-amber { color: var(--accent-amber); }
+.icon-blue { color: #3b82f6; }
+
+.narrative-text {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  background: rgba(139, 92, 246, 0.06);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 18px;
+}
+
+.insight-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+.stat-item .lbl { font-size: 0.75rem; color: var(--text-dim); font-weight: 600; }
+.stat-item .val { font-size: 0.9rem; font-weight: 700; color: var(--text-main); }
+
+/* Budget Bar List */
+.budget-progress-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.b-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.b-bar-bg {
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.b-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.b-bar-fill.success { background: var(--accent-gradient); }
+.b-bar-fill.warning { background: var(--accent-amber); }
+.b-bar-fill.danger { background: var(--accent-rose); }
+
+/* Tips List */
+.tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tip-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  position: relative;
+  transition: all var(--transition-fast);
+}
+
+.tip-card.pinned {
+  border-color: var(--accent-amber);
+  background: rgba(245, 158, 11, 0.06);
+}
+
+.tip-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.tip-title {
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.pin-btn {
+  background: none;
+  color: var(--text-dim);
+}
+.pin-btn .active { color: var(--accent-amber); }
+
+.tip-desc {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.tip-impact-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+}
+
+/* Recent Activity List */
+.recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recent-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+}
+
+.tx-type-pill {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+.tx-type-pill.income { background: rgba(16, 185, 129, 0.15); color: var(--accent-primary); }
+.tx-type-pill.expense { background: rgba(239, 68, 68, 0.15); color: var(--accent-rose); }
+
+.tx-info { flex: 1; }
+.tx-desc { font-weight: 600; font-size: 0.88rem; }
+.tx-meta { font-size: 0.75rem; color: var(--text-dim); }
+.tx-amount { font-weight: 700; font-size: 0.92rem; }

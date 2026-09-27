@@ -1,0 +1,11 @@
+/* Category Box Cell */
+.cell-cat-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.b-cat-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

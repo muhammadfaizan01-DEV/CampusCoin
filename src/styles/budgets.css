@@ -1,0 +1,108 @@
+/* Budgets Page Styles */
+.budgets-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.forecast-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+}
+
+.budgets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.budget-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.budget-card.over-limit {
+  border-color: rgba(239, 68, 68, 0.4);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(18, 24, 43, 0.8) 100%);
+}
+
+.budget-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cat-title-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cat-title-box h3 {
+  font-size: 1.1rem;
+}
+
+.budget-numbers {
+  display: flex;
+  justify-content: space-between;
+}
+
+.b-num {
+  display: flex;
+  flex-direction: column;
+}
+.b-num .lbl { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; }
+.b-num .val { font-size: 1.25rem; font-weight: 800; font-family: var(--font-heading); }
+
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progress-bar-bg {
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.progress-bar-fill.success { background: var(--accent-gradient); }
+.progress-bar-fill.warning { background: var(--accent-amber); }
+.progress-bar-fill.danger { background: var(--accent-rose); }
+
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.status-footer {
+  margin-top: 4px;
+}
+
+.edit-limit-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm);
+}
+.edit-btns {
+  display: flex;
+  gap: 8px;
+}

@@ -1,0 +1,121 @@
+/* AI Insights Page Styles */
+.insights-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header-brand-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ai-icon-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: var(--accent-purple-gradient);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+.narrative-card {
+  border-left: 4px solid var(--accent-purple);
+}
+
+.narrative-body {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-main);
+  background: rgba(139, 92, 246, 0.05);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+
+.pattern-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+}
+
+.tips-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section-title-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.tip-full-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 3px solid var(--border-color);
+}
+
+.tip-full-card.pinned {
+  border-top-color: var(--accent-amber);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.tip-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tip-cat-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-purple);
+  text-transform: uppercase;
+}
+
+.pin-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.pin-action-btn:hover { color: var(--accent-amber); }
+
+.tip-full-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.impact-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--accent-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
